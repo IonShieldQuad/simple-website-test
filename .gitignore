@@ -1,0 +1,6 @@
+# config.json содержит секреты — не коммитим
+config.json
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
