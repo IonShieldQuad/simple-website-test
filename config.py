@@ -40,4 +40,8 @@ def load(path=None):
         value = os.environ.get(key)
         if value:
             cfg[key] = value
+    # Нормализация BOT_USERNAME: терпим "https://t.me/name", "t.me/name", "@name"
+    raw = str(cfg.get("BOT_USERNAME") or "").strip()
+    raw = raw.replace("https://t.me/", "").replace("http://t.me/", "").replace("t.me/", "").lstrip("@")
+    cfg["BOT_USERNAME"] = raw
     return cfg

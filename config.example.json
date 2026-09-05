@@ -9,5 +9,5 @@
   "SMTP_USER": "your_login@yandex.ru",
   "SMTP_APP_PASSWORD": "16-символьный пароль приложения",
   "BOT_TOKEN": "токен от @BotFather",
-  "BOT_USERNAME": "username бота без @"
+  "BOT_USERNAME": "username без @ — ссылка t.me/... тоже сойдёт, нормализуется"
 }
