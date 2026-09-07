@@ -98,9 +98,12 @@ def api_lead():
     try:
         send_email(cfg, build_message(cfg, name, phone))
     except ConfigMissing:
+        current_app.logger.error("api_lead: SMTP не настроен (пустые SMTP_USER/SMTP_APP_PASSWORD)")
         return jsonify(ok=False, error="smtp_not_configured"), 502
-    except (smtplib.SMTPException, OSError):
+    except (smtplib.SMTPException, OSError) as exc:
+        current_app.logger.error("api_lead: SMTP send failed: %r", exc)
         return jsonify(ok=False, error="smtp"), 502
+    current_app.logger.info("api_lead: письмо отправлено -> %s", cfg["TEST_TO_EMAIL"] or cfg["TO_EMAIL"])
     return jsonify(ok=True)
 
 
